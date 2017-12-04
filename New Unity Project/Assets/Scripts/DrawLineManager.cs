@@ -14,8 +14,12 @@ public class DrawLineManager : MonoBehaviour {
         {
             Debug.LogError("got here");
             GameObject go = new GameObject();
-            go.AddComponent<LineRenderer>();
-            currLine = go.AddComponent<LineRenderer>();
+            go.AddComponent<MeshFilter> ();
+            go.AddComponent<MeshRenderer>();
+            currLine = go.AddComponent<GraphicsLineRender>();
+
+            //go.AddComponent<LineRenderer>();
+            //currLine = go.AddComponent<LineRenderer>();
 
             currLine.SetWidth(.1f, .1f);
 
