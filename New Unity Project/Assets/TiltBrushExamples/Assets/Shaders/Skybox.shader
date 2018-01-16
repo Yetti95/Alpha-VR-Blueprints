@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Copyright 2016 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -60,7 +62,7 @@ SubShader {
     {
       v2f o;
       float4 quatConjugate = float4(-_SkyboxRotation.x, -_SkyboxRotation.y, -_SkyboxRotation.z, _SkyboxRotation.w);
-      o.vertex = mul(UNITY_MATRIX_MVP, quat_mult(_SkyboxRotation, quat_mult(v.vertex, quatConjugate)));
+      o.vertex = UnityObjectToClipPos(quat_mult(_SkyboxRotation, quat_mult(v.vertex, quatConjugate)));
       o.texcoord = v.vertex;
       return o;
     }

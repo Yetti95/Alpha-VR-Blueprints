@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Copyright 2016 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -52,7 +54,7 @@ SubShader {
 
             v2f o;
 			
-            o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+            o.vertex = UnityObjectToClipPos(v.vertex);
             o.texcoord = v.texcoord;
             o.color = v.color;
             return o;

@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Copyright 2016 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -88,7 +90,7 @@ CGINCLUDE
 		// This adds curl noise
 		v.vertex.xyz += disp * _DisplacementIntensity * envelopePow; 
 
-		o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+		o.vertex = UnityObjectToClipPos(v.vertex);
 		o.color = bloomColor(v.color, _EmissionGain); 
 		o.texcoord = v.texcoord0;
 

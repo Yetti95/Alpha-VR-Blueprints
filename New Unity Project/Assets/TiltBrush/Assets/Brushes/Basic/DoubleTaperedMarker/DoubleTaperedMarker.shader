@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Copyright 2016 Google Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -58,7 +60,7 @@ Category {
 				float envelope = sin(v.texcoord0.x * 3.14159);
 				float widthMultiplier = 1 - envelope;
 				v.vertex.xyz += -v.texcoord1 * widthMultiplier * 0.1; // TODO: Use raw secondary coordinates once supported
-				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
+				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.color = v.color;
 				o.texcoord = v.texcoord0;
 				return o; 
