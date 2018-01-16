@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\DrawLineManager.cs" />
+    <Compile Include="Assets\Scripts\EnviormentScaler.cs" />
     <Compile Include="Assets\Scripts\GraphicsLineRender.cs" />
     <Compile Include="Assets\Scripts\SLManager.cs" />
     <Compile Include="Assets\Scripts\SaveLoad.cs" />
