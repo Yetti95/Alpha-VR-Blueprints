@@ -10,7 +10,7 @@ class Point {
 
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
-public class MeshLineRenderer : MonoBehaviour
+public class GraphicsLineRender : MonoBehaviour
 {
 
     public Material lmat;
@@ -36,7 +36,7 @@ public class MeshLineRenderer : MonoBehaviour
 
     public void AddPoint(Vector3 point)
     {
-        if (firstQuad)
+        if (s != Vector3.zero)
         {
             AddLine(ml, MakeQuad(s, point, lineSize, firstQuad));
             firstQuad = false;

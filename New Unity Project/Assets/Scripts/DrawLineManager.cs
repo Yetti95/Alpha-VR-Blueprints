@@ -5,7 +5,7 @@ using UnityEngine;
 public class DrawLineManager : MonoBehaviour {
 
     public SteamVR_TrackedObject trackedObj;
-    private LineRenderer currLine;
+    private GraphicsLineRender currLine;
     private int numClicks = 0;
 	// Update is called once per frame
 	void Update () {
@@ -21,15 +21,16 @@ public class DrawLineManager : MonoBehaviour {
             //go.AddComponent<LineRenderer>();
             //currLine = go.AddComponent<LineRenderer>();
 
-            currLine.SetWidth(.1f, .1f);
+            currLine.setWidth(.1f);
 
             numClicks = 0;
 
         } else if(device.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
             {
-                currLine.SetVertexCount(numClicks + 1);
-                currLine.SetPosition(numClicks, trackedObj.transform.position);
-                numClicks++;
+            // currLine.SetVertexCount(numClicks + 1);
+            //currLine.SetPosition(numClicks, trackedObj.transform.position);
+            currLine.AddPoint(trackedObj.transform.position);
+            numClicks++;
                 
             }
 
