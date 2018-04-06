@@ -18,6 +18,14 @@ public class DrawLineManager : MonoBehaviour {
         SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index);
         if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && toggle)
         {
+
+            /**
+             * For the undo button:
+             * 
+             * possible array of objects so we can destroy on length of array - 1 
+             * to undo the last object rendered
+             * 
+             * */
             //Debug.LogError("got here");
             GameObject go = new GameObject();
             go.AddComponent<MeshFilter> ();
