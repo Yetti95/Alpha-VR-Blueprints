@@ -8,6 +8,9 @@ class Point {
 } 
 */
 
+    /// <summary>
+    /// bassed on Unity Graphics Library and altered to accomidate non-standard meshes
+    /// </summary>
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
 public class GraphicsLineRender : MonoBehaviour
@@ -32,6 +35,11 @@ public class GraphicsLineRender : MonoBehaviour
     public void setWidth(float width)
     {
         lineSize = width;
+    }
+
+    public float getWidth()
+    {
+        return lineSize;
     }
 
     public void AddPoint(Vector3 point)

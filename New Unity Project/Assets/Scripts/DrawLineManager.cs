@@ -7,12 +7,18 @@ public class DrawLineManager : MonoBehaviour {
     public SteamVR_TrackedObject trackedObj;
     private GraphicsLineRender currLine;
     private int numClicks = 0;
-	// Update is called once per frame
-	void Update () {
+    public bool toggle;
+    // Update is called once per frame
+    private void Start()
+    {
+         toggle = true;
+         currLine.setWidth(.1f);
+    }
+    void Update () {
         SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index);
-        if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
+        if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && toggle)
         {
-            Debug.LogError("got here");
+            //Debug.LogError("got here");
             GameObject go = new GameObject();
             go.AddComponent<MeshFilter> ();
             go.AddComponent<MeshRenderer>();
@@ -21,11 +27,11 @@ public class DrawLineManager : MonoBehaviour {
             //go.AddComponent<LineRenderer>();
             //currLine = go.AddComponent<LineRenderer>();
 
-            currLine.setWidth(.1f);
+           
 
             numClicks = 0;
 
-        } else if(device.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
+        } else if(device.GetTouch(SteamVR_Controller.ButtonMask.Trigger) && toggle)
             {
             // currLine.SetVertexCount(numClicks + 1);
             //currLine.SetPosition(numClicks, trackedObj.transform.position);
@@ -33,6 +39,38 @@ public class DrawLineManager : MonoBehaviour {
             numClicks++;
                 
             }
+        /*
+        if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad))
+        {
+            if (toggle)
+            {
+                toggle = false;
 
-	}
+            }
+            else
+            {
+                toggle = true;
+            }
+        }
+        */
+
+    }
+
+    public void setToggle(bool offOn)
+    {
+        toggle = offOn;
+    }
+    public bool getToggle()
+    {
+        return toggle;
+    }
+
+    public float getWidth()
+    {
+        return currLine.getWidth();
+    }
+    public void setWidth(float change)
+    {
+        currLine.setWidth(change);
+    }
 }
