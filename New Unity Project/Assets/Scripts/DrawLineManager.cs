@@ -1,19 +1,44 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DrawLineManager : MonoBehaviour {
 
     public SteamVR_TrackedObject trackedObj;
+    private SteamVR_TrackedController controller;
+    public SteamVR_TrackedObject left;
     private GraphicsLineRender currLine;
     private int numClicks = 0;
     public bool toggle;
+    public Stack<GameObject> objList;
     // Update is called once per frame
     private void Start()
     {
-         toggle = true;
-         currLine.setWidth(.1f);
+        toggle = true;
+        setWidth(.1f);
+        SteamVR_Controller.Device leftDev = SteamVR_Controller.Input((int)left.index);
+        left = GetComponent<SteamVR_TrackedObject>();
+        controller = GetComponent<SteamVR_TrackedController>();
+        controller.PadClicked += Controller_PadClicked;
+        //device = SteamVR_Controller.Input((int)trackedObj.index);
+
+        //currPos = device.GetTouch(SteamVR_Controller.Input.);
+        //prevPos = 0f;
+        // prevPos = device.GetAxis().x;
     }
+
+    private void Controller_PadClicked(object sender, ClickedEventArgs e)
+    {
+        SteamVR_Controller.Device leftDev = SteamVR_Controller.Input((int)left.index);
+
+        if (leftDev.GetAxis().x < 0)
+        {
+            if(objList.Count>=1)
+                Destroy(objList.Pop());
+        }
+    }
+
     void Update () {
         SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index);
         if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && toggle)
@@ -28,13 +53,13 @@ public class DrawLineManager : MonoBehaviour {
              * */
             //Debug.LogError("got here");
             GameObject go = new GameObject();
-            go.AddComponent<MeshFilter> ();
+            go.AddComponent<MeshFilter>();
             go.AddComponent<MeshRenderer>();
             currLine = go.AddComponent<GraphicsLineRender>();
-
+            objList.Push(go);
             //go.AddComponent<LineRenderer>();
             //currLine = go.AddComponent<LineRenderer>();
-
+            print(objList.Count);
            
 
             numClicks = 0;

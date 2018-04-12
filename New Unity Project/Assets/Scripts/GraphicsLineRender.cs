@@ -22,6 +22,10 @@ public class GraphicsLineRender : MonoBehaviour
 
     private Vector3 s;
 
+    private float minSize = .01f;
+
+    private float maxSize = 1f;
+
     private float lineSize = .1f;
 
     private bool firstQuad = true;
@@ -34,7 +38,16 @@ public class GraphicsLineRender : MonoBehaviour
 
     public void setWidth(float width)
     {
-        lineSize = width;
+        if(width >= maxSize)
+        {
+            lineSize = maxSize;
+        }
+        else if(width <= minSize)
+        {
+            lineSize = minSize;
+        }
+        else
+            lineSize = width;
     }
 
     public float getWidth()
