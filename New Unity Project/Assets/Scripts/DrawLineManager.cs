@@ -9,9 +9,11 @@ public class DrawLineManager : MonoBehaviour {
     private SteamVR_TrackedController controller;
     public SteamVR_TrackedObject left;
     private GraphicsLineRender currLine;
+    public ColorManager cm;
     private int numClicks = 0;
     public bool toggle;
     public Stack<GameObject> objList;
+    public Material lmat;
     // Update is called once per frame
     private void Start()
     {
@@ -41,6 +43,8 @@ public class DrawLineManager : MonoBehaviour {
 
     void Update () {
         SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index);
+        SteamVR_Controller.Device leftDev = SteamVR_Controller.Input((int)left.index);
+
         if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && toggle)
         {
 
@@ -55,8 +59,13 @@ public class DrawLineManager : MonoBehaviour {
             GameObject go = new GameObject();
             go.AddComponent<MeshFilter>();
             go.AddComponent<MeshRenderer>();
+            //color not getting added to the game object
+            //go.GetComponent<MeshRenderer>().material.color = cm.color;
             currLine = go.AddComponent<GraphicsLineRender>();
-            objList.Push(go);
+            currLine.lmat = new Material(lmat);
+
+            //currLine.lmat.color = cm.color;
+            //objList.Push(go);
             //go.AddComponent<LineRenderer>();
             //currLine = go.AddComponent<LineRenderer>();
             print(objList.Count);
@@ -72,6 +81,10 @@ public class DrawLineManager : MonoBehaviour {
             numClicks++;
                 
             }
+        if(currLine != null)
+        {
+            currLine.lmat.color = ColorManager.Instance.GetCurrentColor();
+        }
         /*
         if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Touchpad))
         {

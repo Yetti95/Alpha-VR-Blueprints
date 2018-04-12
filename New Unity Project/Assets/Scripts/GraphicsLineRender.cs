@@ -18,6 +18,8 @@ public class GraphicsLineRender : MonoBehaviour
 
     public Material lmat;
 
+    //public Shader shade;
+
     private Mesh ml;
 
     private Vector3 s;
@@ -34,6 +36,7 @@ public class GraphicsLineRender : MonoBehaviour
     {
         ml = GetComponent<MeshFilter>().mesh;
         GetComponent<MeshRenderer>().material = lmat;
+        //GetComponent<MeshRenderer>().material.shader = shade;
     }
 
     public void setWidth(float width)
