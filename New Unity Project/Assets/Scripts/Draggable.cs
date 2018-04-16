@@ -9,7 +9,7 @@ public class Draggable : MonoBehaviour
 	public bool fixX;
 	public bool fixY;
 	public Transform thumb;	
-	bool dragging;
+	public bool dragging;
 
 	void FixedUpdate()
 	{

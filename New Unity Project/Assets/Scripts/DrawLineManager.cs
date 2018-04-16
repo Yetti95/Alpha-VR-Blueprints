@@ -7,46 +7,36 @@ public class DrawLineManager : MonoBehaviour {
 
     public SteamVR_TrackedObject trackedObj;
     private SteamVR_TrackedController controller;
-    public SteamVR_TrackedObject left;
+    //public SteamVR_TrackedObject left;
     private GraphicsLineRender currLine;
     public ColorManager cm;
     private int numClicks = 0;
     public bool toggle;
     public Stack<GameObject> objList;
     public Material lmat;
+    public Draggable dragginSatuation;
+    public Draggable dragginColor;
+
     // Update is called once per frame
     private void Start()
     {
-        toggle = true;
         setWidth(.1f);
-        SteamVR_Controller.Device leftDev = SteamVR_Controller.Input((int)left.index);
-        left = GetComponent<SteamVR_TrackedObject>();
         controller = GetComponent<SteamVR_TrackedController>();
         controller.PadClicked += Controller_PadClicked;
-        //device = SteamVR_Controller.Input((int)trackedObj.index);
-
-        //currPos = device.GetTouch(SteamVR_Controller.Input.);
-        //prevPos = 0f;
-        // prevPos = device.GetAxis().x;
+        
     }
 
     private void Controller_PadClicked(object sender, ClickedEventArgs e)
     {
-        SteamVR_Controller.Device leftDev = SteamVR_Controller.Input((int)left.index);
-
-        if (leftDev.GetAxis().x < 0)
-        {
-            if(objList.Count>=1)
-                Destroy(objList.Pop());
-        }
+       
     }
 
     void Update () {
         SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index);
-        SteamVR_Controller.Device leftDev = SteamVR_Controller.Input((int)left.index);
+        //SteamVR_Controller.Device leftDev = SteamVR_Controller.Input((int)left.index);
+       toggle = dragginColor.dragging || dragginSatuation.dragging;
 
-        if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && toggle)
-        {
+        if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && !toggle)       {
 
             /**
              * For the undo button:
@@ -68,12 +58,12 @@ public class DrawLineManager : MonoBehaviour {
             //objList.Push(go);
             //go.AddComponent<LineRenderer>();
             //currLine = go.AddComponent<LineRenderer>();
-            print(objList.Count);
+            //print(objList.Count);
            
 
             numClicks = 0;
 
-        } else if(device.GetTouch(SteamVR_Controller.ButtonMask.Trigger) && toggle)
+        } else if(device.GetTouch(SteamVR_Controller.ButtonMask.Trigger) && !toggle)
             {
             // currLine.SetVertexCount(numClicks + 1);
             //currLine.SetPosition(numClicks, trackedObj.transform.position);
@@ -99,7 +89,7 @@ public class DrawLineManager : MonoBehaviour {
             }
         }
         */
-
+        Debug.Log("instance count: " + objList.Count);
     }
 
     public void setToggle(bool offOn)

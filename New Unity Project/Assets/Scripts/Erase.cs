@@ -8,35 +8,44 @@ public class Erase : MonoBehaviour {
     public SteamVR_TrackedObject trackedObj;
     private SteamVR_Controller.Device dev;
     private SteamVR_TrackedController controller;
-    bool toggle;
+    private Stack<GameObject> stack;
 
-    
 
     // Use this for initialization
     void Start () {
-        if (!manager.toggle)
-        {
-            trackedObj = GetComponent<SteamVR_TrackedObject>();
-            controller = GetComponent<SteamVR_TrackedController>();
-            controller.PadClicked += Controller_PadClicked;
+        //SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index);
+        trackedObj = GetComponent<SteamVR_TrackedObject>();
+        controller = GetComponent<SteamVR_TrackedController>();
+        controller.PadClicked += Controller_PadClicked;
    
-        }
-	}
+
+    }
 
     private void Controller_PadClicked(object sender, ClickedEventArgs e)
     {
-        if(dev.GetAxis().x <= 0)
+        //SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index);
+
+        if (dev.GetAxis().x <= 0)
         {
-            return;
-           // Destroy(manager.go);
+            //dev = SteamVR_Controller.Input((int)trackedObj.index);
+
+         
+                Debug.Log("Should destroy");
+                Destroy(manager.objList.Pop());
+            
+            // Destroy(manager.go);
         }
     }
+
+
+  
   
     // Update is called once per frame
     void Update () {
-        /*
-        SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index);
-        if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && !manager.toggle)
+      
+        dev = SteamVR_Controller.Input((int)trackedObj.index);
+        stack = manager.objList;
+        /*if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && !manager.toggle)
         {
             //Debug.LogError("got here");
            

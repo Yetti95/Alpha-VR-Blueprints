@@ -70,7 +70,7 @@ public class BrushScaler : MonoBehaviour {
                     prevPos = device.GetAxis().x;
                     manager.setWidth(delta);
                     rate = 0;
-                    manager.setWidth(manager.getWidth() * Time.deltaTime * Mathf.Sign(delta) * 2f);
+                    manager.setWidth(manager.getWidth() * Time.deltaTime * Mathf.Sign(delta) * 3f);
                     //prevPos = device.GetAxis().x;
                 }
             }

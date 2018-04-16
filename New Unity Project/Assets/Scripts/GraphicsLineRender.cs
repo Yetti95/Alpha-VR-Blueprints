@@ -26,7 +26,7 @@ public class GraphicsLineRender : MonoBehaviour
 
     private float minSize = .01f;
 
-    private float maxSize = 1f;
+    private float maxSize = .8f;
 
     private float lineSize = .1f;
 
