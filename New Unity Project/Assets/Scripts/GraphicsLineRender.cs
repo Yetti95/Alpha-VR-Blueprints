@@ -18,13 +18,15 @@ public class GraphicsLineRender : MonoBehaviour
 
     public Material lmat;
 
+    //public Shader shade;
+
     private Mesh ml;
 
     private Vector3 s;
 
     private float minSize = .01f;
 
-    private float maxSize = 1f;
+    private float maxSize = .8f;
 
     private float lineSize = .1f;
 
@@ -34,6 +36,7 @@ public class GraphicsLineRender : MonoBehaviour
     {
         ml = GetComponent<MeshFilter>().mesh;
         GetComponent<MeshRenderer>().material = lmat;
+        //GetComponent<MeshRenderer>().material.shader = shade;
     }
 
     public void setWidth(float width)
