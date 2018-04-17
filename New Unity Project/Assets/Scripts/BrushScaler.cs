@@ -43,7 +43,7 @@ public class BrushScaler : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate () {
         SteamVR_Controller.Device device = SteamVR_Controller.Input((int)trackedObj.index);
-        print("previous position: " + prevPos);
+ 
 
 
         if (rate >= 5)
