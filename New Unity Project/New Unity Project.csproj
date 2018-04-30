@@ -245,7 +245,6 @@
     <Compile Include="Assets\Scripts\ColorSaturationBrightnessPicker.cs" />
     <Compile Include="Assets\Scripts\Draggable.cs" />
     <Compile Include="Assets\Scripts\DrawLineManager.cs" />
-    <Compile Include="Assets\Scripts\EnviormentScaler.cs" />
     <Compile Include="Assets\Scripts\EnviormentScalerManager.cs" />
     <Compile Include="Assets\Scripts\Erase.cs" />
     <Compile Include="Assets\Scripts\ExampleColorReceiver.cs" />

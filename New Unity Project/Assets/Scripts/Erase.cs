@@ -8,7 +8,7 @@ public class Erase : MonoBehaviour {
     public SteamVR_TrackedObject trackedObj;
     private SteamVR_Controller.Device dev;
     private SteamVR_TrackedController controller;
-    private Stack<GameObject> stack;
+    //private Stack<GameObject> stack;
 
 
     // Use this for initialization
@@ -28,10 +28,9 @@ public class Erase : MonoBehaviour {
         if (dev.GetAxis().x <= 0)
         {
             //dev = SteamVR_Controller.Input((int)trackedObj.index);
-
-         
-                Debug.Log("Should destroy");
-                Destroy(manager.objList.Pop());
+            UnityEditor.Undo.DestroyObjectImmediate(manager.go);
+            //    Debug.Log("Should destroy");
+            //    Destroy(manager.objList.Pop());
             
             // Destroy(manager.go);
         }
@@ -44,7 +43,7 @@ public class Erase : MonoBehaviour {
     void Update () {
       
         dev = SteamVR_Controller.Input((int)trackedObj.index);
-        stack = manager.objList;
+        //stack = manager.objList;
         /*if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger) && !manager.toggle)
         {
             //Debug.LogError("got here");
